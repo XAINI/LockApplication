@@ -5,8 +5,8 @@ android {
     buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "com.example.shanzhenqiang.lockapplication"
-        minSdkVersion 19
-        targetSdkVersion 23
+        minSdkVersion 15
+        targetSdkVersion 15
         versionCode 1
         versionName "1.0"
     }
@@ -16,7 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/xml'] } }
+//    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/xml'] } }
     productFlavors {
     }
 }

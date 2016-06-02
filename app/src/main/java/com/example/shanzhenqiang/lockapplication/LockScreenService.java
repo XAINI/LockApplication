@@ -26,9 +26,9 @@ public class LockScreenService extends Service {
 
     @Override
     public void onCreate() {
+        Log.i(TAG, "----------------- onCreate------");
         super.onCreate();
-
-        lockIntent = new Intent(LockScreenService.this, MainActivity.class);
+        lockIntent = new Intent(this, MainActivity.class);
         lockIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         /* 注册广播 */
@@ -38,20 +38,18 @@ public class LockScreenService extends Service {
         //注册广播
         IntentFilter mScreenOffFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
         LockScreenService.this.registerReceiver(mScreenOffReceiver, mScreenOffFilter);
+
+        Log.v("this","mScreenOnFilter==="+mScreenOnFilter+"      mScreenOffFilter==="+mScreenOffFilter);
     }
 
     @Override
     public void onDestroy() {
+        Log.i(TAG, "----------------- onDestroy------");
         super.onDestroy();
         LockScreenService.this.unregisterReceiver(mScreenOnReceiver);
         LockScreenService.this.unregisterReceiver(mScreenOffReceiver);
         //重新启动activity
         startService(new Intent(LockScreenService.this, LockScreenService.class));
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        return Service.START_STICKY;
     }
 
     /**
