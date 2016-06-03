@@ -10,13 +10,14 @@ public class AdminReceiver extends BroadcastReceiver {
     private final static String TAG = "LockScreenReceiver";
     private KeyguardManager keyguardManager = null;
     private KeyguardManager.KeyguardLock keyguardLock = null;
+
     public AdminReceiver() {
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "----------------- Hello Receive ------");
-        if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF) || intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
+        if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF) || intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
             Log.i(TAG, "-----------------This is SCREEN_OFF------");
             Intent mIntent = new Intent(context, MainActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

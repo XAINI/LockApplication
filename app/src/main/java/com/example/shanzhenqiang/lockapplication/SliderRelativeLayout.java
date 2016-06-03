@@ -24,8 +24,8 @@ public class SliderRelativeLayout extends RelativeLayout {
     private int locationY = 0; //bitmap初始绘图位置，足够大，可以认为看不见
     private ImageView wholeRingView = null; //主要是获取相对布局的高度
     private Handler handler = null; //信息传递
-    private static int BACK_DURATION = 10 ;   // 回退动画时间间隔值  20ms
-    private static float VE_HORIZONTAL = 0.9f ;  // 水平方向前进速率 0.1dip/ms
+    private static int BACK_DURATION = 10;   // 回退动画时间间隔值  20ms
+    private static float VE_HORIZONTAL = 0.9f;  // 水平方向前进速率 0.1dip/ms
 
     public SliderRelativeLayout(Context context) {
         super(context);
@@ -50,8 +50,8 @@ public class SliderRelativeLayout extends RelativeLayout {
      * 得到拖拽图片
      */
     private void intiDragBitmap() {
-        if(dragBitmap == null){
-            dragBitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.suoping);
+        if (dragBitmap == null) {
+            dragBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.suoping);
         }
     }
 
@@ -83,7 +83,7 @@ public class SliderRelativeLayout extends RelativeLayout {
                 return true;
 
             case MotionEvent.ACTION_UP: //判断是否解锁成功
-                if(!isLocked()){ //没有解锁成功,动画应该回退
+                if (!isLocked()) { //没有解锁成功,动画应该回退
                     handleActionUpEvent(event); //动画回退
                 }
                 return true;
@@ -93,6 +93,7 @@ public class SliderRelativeLayout extends RelativeLayout {
 
     /**
      * 回退动画
+     *
      * @param event
      */
     private void handleActionUpEvent(MotionEvent event) {
@@ -100,7 +101,7 @@ public class SliderRelativeLayout extends RelativeLayout {
         int whole = wholeRingView.getHeight();
 
         locationY = Y - whole;
-        if(locationY <= getScreenHeight()/2){
+        if (locationY <= getScreenHeight() / 2) {
             handler.postDelayed(ImageBack, BACK_DURATION); //回退
         }
     }
@@ -111,30 +112,33 @@ public class SliderRelativeLayout extends RelativeLayout {
     private Runnable ImageBack = new Runnable() {
         @Override
         public void run() {
-            locationY = locationY - (int) (VE_HORIZONTAL*BACK_DURATION);
-            if(locationY >= 0){
+            locationY = locationY - (int) (VE_HORIZONTAL * BACK_DURATION);
+            if (locationY >= 0) {
                 handler.postDelayed(ImageBack, BACK_DURATION); //回退
                 invalidate();
             }
         }
     };
 //
+
     /**
      * 判断是否点击到了滑动区域
+     *
      * @param event
      * @return
      */
     private boolean isActionDown(MotionEvent event) {
         Rect rect = new Rect();
         wholeRingView.getHitRect(rect);
-        boolean isIn = rect.contains((int)event.getX(), (int)event.getY()-wholeRingView.getHeight());
-        if(isIn){
+        boolean isIn = rect.contains((int) event.getX(), (int) event.getY() - wholeRingView.getHeight());
+        if (isIn) {
             wholeRingView.setVisibility(View.GONE);
             return true;
         }
         return false;
     }
 //
+
     /**
      * 绘制拖动时的图片
      */
@@ -144,31 +148,33 @@ public class SliderRelativeLayout extends RelativeLayout {
         invalidateDragImg(canvas);
     }
 //
+
     /**
      * 图片随手势移动
+     *
      * @param canvas
      */
     private void invalidateDragImg(Canvas canvas) {
         int drawY = locationY - dragBitmap.getHeight();
         int drawX = wholeRingView.getWidth();
 
-        if(drawY < getScreenHeight()/2){ //向上划到中上位置
+        if (drawY < getScreenHeight() / 2) { //向上划到中上位置
             wholeRingView.setVisibility(View.VISIBLE);
             return;
         } else {
-            if(isLocked()){ //判断是否成功
+            if (isLocked()) { //判断是否成功
                 return;
             }
             wholeRingView.setVisibility(View.GONE);
-            canvas.drawBitmap(dragBitmap, drawY < 0 ? 5 : drawY,drawX,null);
+            canvas.drawBitmap(dragBitmap, drawY < 0 ? 5 : drawY, drawX, null);
         }
     }
 
     /**
      * 判断是否解锁
      */
-    private boolean isLocked(){
-        if(locationY > (getScreenHeight() - wholeRingView.getHeight())){
+    private boolean isLocked() {
+        if (locationY > (getScreenHeight() - wholeRingView.getHeight())) {
             handler.obtainMessage(MainActivity.MSG_LOCK_SUCESS).sendToTarget();
             return true;
         }
@@ -177,9 +183,10 @@ public class SliderRelativeLayout extends RelativeLayout {
 
     /**
      * 获取屏幕高度
+     *
      * @return
      */
-    private int getScreenHeight(){
+    private int getScreenHeight() {
         WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         int height = manager.getDefaultDisplay().getHeight();
         return height;
@@ -187,9 +194,10 @@ public class SliderRelativeLayout extends RelativeLayout {
 
     /**
      * 与主activity通信
+     *
      * @param handler
      */
-    public void setMainHandler(Handler handler){
+    public void setMainHandler(Handler handler) {
         this.handler = handler;
     }
 }
