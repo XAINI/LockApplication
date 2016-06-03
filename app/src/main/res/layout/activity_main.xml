@@ -4,23 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="com.example.shanzhenqiang.lockapplication.MainActivity">
-    <!--<com.example.shanzhenqiang.lockapplication.SliderRelativeLayout-->
-    <!--android:id="@+id/sliderLayout"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="fill_parent">-->
 
-    <!--<RelativeLayout-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="fill_parent"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_centerVertical="true">-->
+    <com.example.shanzhenqiang.lockapplication.SliderRelativeLayout
+        android:id="@+id/sliderLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <ImageView
-        android:id="@+id/wholeRing"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:background="@drawable/suoping" />
-    <!--</RelativeLayout>-->
-    <!--</com.example.shanzhenqiang.lockapplication.SliderRelativeLayout>-->
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/wholeRing"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/suoping" />
+        </RelativeLayout>
+    </com.example.shanzhenqiang.lockapplication.SliderRelativeLayout>
 </RelativeLayout>
