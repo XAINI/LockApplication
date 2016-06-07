@@ -10,24 +10,28 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private final String TAG = "LockScreenActivity";
+    private final String TAG = "MainActivity";
+    private Intent service_intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /**隐去电池等图标和一切修饰部分（状态栏部分）*/
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        /** 屏蔽back键*/
-        this.getWindow().setFlags(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG, WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
 
-        startService(new Intent(MainActivity.this, LockScreenService.class)); //这里要显示的调用服务
+
+        service_intent = new Intent(MainActivity.this, LockScreenService.class); //这里要显示的调用服务
     }
 
-    public void close(View view){
-        finish();
+    public void start_service(View view){
+        Toast.makeText(getApplicationContext(), "启动锁屏监听服务", Toast.LENGTH_SHORT).show();
+        this.startService(service_intent);
     }
 
+    public void stop_service(View view){
+        Toast.makeText(getApplicationContext(), "停止锁屏监听服务", Toast.LENGTH_SHORT).show();
+        this.stopService(service_intent);
+    }
 }
