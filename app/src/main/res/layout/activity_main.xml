@@ -4,25 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="com.example.shanzhenqiang.lockapplication.MainActivity">
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="启动锁屏服务"
+        android:onClick="start_service"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/start_button"
+        android:text="停止锁屏服务"
+        android:onClick="stop_service"/>
 
-    <com.example.shanzhenqiang.lockapplication.SliderRelativeLayout
-        android:id="@+id/sliderLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true">
-
-            <ImageView
-                android:id="@+id/wholeRing"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:onClick="close"
-                android:background="@drawable/suoping" />
-        </RelativeLayout>
-    </com.example.shanzhenqiang.lockapplication.SliderRelativeLayout>
 </RelativeLayout>

@@ -19,7 +19,7 @@ public class AdminReceiver extends BroadcastReceiver {
         Log.i(TAG, "----------------- Hello Receive ------");
         if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF) || intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
             Log.i(TAG, "-----------------This is SCREEN_OFF------");
-            Intent mIntent = new Intent(context, MainActivity.class);
+            Intent mIntent = new Intent(context, LockScreenActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             keyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);

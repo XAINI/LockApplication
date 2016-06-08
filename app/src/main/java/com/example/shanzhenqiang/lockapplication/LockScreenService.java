@@ -32,7 +32,7 @@ public class LockScreenService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        lockIntent = new Intent(this, MainActivity.class);
+        lockIntent = new Intent(this, LockScreenActivity.class);
         lockIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         /* 注册广播 */
@@ -49,8 +49,5 @@ public class LockScreenService extends Service {
         Log.i(TAG, "----------------- onDestroy------");
         super.onDestroy();
         LockScreenService.this.unregisterReceiver(lockReceiver);
-        LockScreenService.this.unregisterReceiver(lockReceiver);
-        //重新启动activity
-        startService(new Intent(LockScreenService.this, LockScreenService.class));
     }
 }
