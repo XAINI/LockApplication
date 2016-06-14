@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -22,9 +23,9 @@ public class LockScreenActivity extends AppCompatActivity {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-        setContentView(R.layout.activity_lock_screen);
         MyTask myTask = new MyTask();
         myTask.execute();
+        setContentView(R.layout.activity_lock_screen);
     }
 
     public void close(View view){
@@ -44,6 +45,7 @@ public class LockScreenActivity extends AppCompatActivity {
             String result;
             try {
                 result = get_examination();
+                Log.i(TAG,"<<<<<<<<<<<<<<<<<<<result0>>>>>>>>>>>"+result);
                 return result;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -54,17 +56,22 @@ public class LockScreenActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
+//            Log.i(TAG,"<<<<<<<<<<<<<<<<<<<result>>>>>>>>>>>"+result);
+//            TextView textView = (TextView) findViewById(R.id.wholeRing);
+//            textView.setText(result);
         }
-    }
-    String get_examination() throws Exception{
-        String url = "http://192.168.100.3:3000/curriculums/fetch_curriculums";
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(url).build();
-        Response response = client.newCall(request).execute();
-        if (response.isSuccessful()) {
-            return response.body().string();
-        } else {
-            throw new IOException("Unexpected code " + response);
+
+        String get_examination() throws Exception{
+            String url = "http://192.168.56.3:3000/curriculums/fetch_curriculums";
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder().url(url).build();
+            Response response = client.newCall(request).execute();
+            Log.i(TAG,"<<<<<<<<<<<<<<<<<<<response>>>>>>>>>>>"+response.body().string());
+            if (response.isSuccessful()) {
+                return response.body().string();
+            } else {
+                throw new IOException("Unexpected code " + response);
+            }
         }
     }
 }

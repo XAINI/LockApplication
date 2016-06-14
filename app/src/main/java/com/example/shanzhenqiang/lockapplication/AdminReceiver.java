@@ -18,7 +18,7 @@ public class AdminReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "----------------- Hello Receive ------");
         if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF) || intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
-            Log.i(TAG, "-----------------This is SCREEN_OFF------");
+            Log.i(TAG, "-----------------This is "+intent.getAction()+" --------------");
             Intent mIntent = new Intent(context, LockScreenActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
