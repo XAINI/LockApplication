@@ -56,9 +56,9 @@ public class LockScreenActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-//            Log.i(TAG,"<<<<<<<<<<<<<<<<<<<result>>>>>>>>>>>"+result);
-//            TextView textView = (TextView) findViewById(R.id.wholeRing);
-//            textView.setText(result);
+            Log.i(TAG,"<<<<<<<<<<<<<<<<<<<result>>>>>>>>>>>"+result);
+            TextView textView = (TextView) findViewById(R.id.wholeRing);
+            textView.setText(result);
         }
 
         String get_examination() throws Exception{
